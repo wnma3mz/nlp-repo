@@ -83,7 +83,7 @@ def train_model(input_shape, word_to_vec_map, word_to_index):
     # 全连接层，激活函数为softmax，输出维度为5（有5个标签）
     X = Dense(5, activation='softmax')(X)
     # 对上一个层的输出进行激活
-    X = Activation('softmax')(X)
+    X = Activation('relu')(X)
     # 使用函数式模型，以sentence_indices为输入，X为输出
     model = Model(sentence_indices, X)
     return model
@@ -140,4 +140,4 @@ if __name__ == '__main__':
     # 根据预测结果与测试数据的标签进行对比，得到准确率。
     print("预测的准确率:", np.count_nonzero(np.argmax(pred, axis=1) == test_y) / 60)
     # 保存训练好的模型，可能是由于词向量数据太大的原因，我本地不能保存。。。
-    model.save('Emojify.h5')
+    # model.save('Emojify.h5')
